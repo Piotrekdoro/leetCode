@@ -14,16 +14,28 @@ Note:
 
 
 def isValidSudoku(board):
-    boardStateDict={}
+    boardSize=len(board)
+    rows=[{} for i in range(boardSize)]
+    columns=[{} for i in range(boardSize)]
+    squares=[{} for i in range(boardSize)]
+    squareNum={(0,0):0,(0,1):1,(0,2):2,(1,0):3,(1,1):4,(1,2):5,(2,0):6,(2,1):7,(2,2):8}
+      
+    for rowNum in range(boardSize):
+        for columnNum in range(boardSize):
+            if board[rowNum][columnNum]!='.':
+                curPos=board[rowNum][columnNum]
+                if curPos in rows[rowNum]:
+                    return False
+                rows[rowNum][curPos]=columnNum
+                if curPos in columns[columnNum]:
+                    return False
+                columns[columnNum][curPos]=rowNum
+                if curPos in squares[squareNum[((columnNum-columnNum%3)/3,(rowNum-rowNum%3)/3)]]:
+                    return False          
+                squares[squareNum[((columnNum-columnNum%3)/3,(rowNum-rowNum%3)/3)]][curPos]=(rowNum,columnNum)
+    return True
 
-    for i in range(len(board[1])):
-        for j in range(len(board)):
-            if board[i][j]!='.':
-                boardStateDict[i*9+j+1]=board[i][j]
-                
-    print(boardStateDict)
-
-isValidSudoku(
+test=isValidSudoku(
 [["5","3",".",".","7",".",".",".","."]
 ,["6",".",".","1","9","5",".",".","."]
 ,[".","9","8",".",".",".",".","6","."]
@@ -34,16 +46,30 @@ isValidSudoku(
 ,[".",".",".","4","1","9",".",".","5"]
 ,[".",".",".",".","8",".",".","7","9"]]) 
 
-
-
-
-
-
-
-
-
+print(test)
 
 '''
 class Solution:
     def isValidSudoku(self, board: List[List[str]]) -> bool:
+
+        boardSize=len(board)
+        rows=[{} for i in range(boardSize)]
+        columns=[{} for i in range(boardSize)]
+        squares=[{} for i in range(boardSize)]
+        squareNum={(0,0):0,(0,1):1,(0,2):2,(1,0):3,(1,1):4,(1,2):5,(2,0):6,(2,1):7,(2,2):8}
+      
+        for rowNum in range(boardSize):
+            for columnNum in range(boardSize):
+                if board[rowNum][columnNum]!='.':
+                    curPos=board[rowNum][columnNum]
+                    if curPos in rows[rowNum]:
+                        return False
+                    rows[rowNum][curPos]=columnNum
+                    if curPos in columns[columnNum]:
+                        return False
+                    columns[columnNum][curPos]=rowNum
+                    if curPos in squares[squareNum[((columnNum-columnNum%3)/3,(rowNum-rowNum%3)/3)]]:
+                        return False          
+                    squares[squareNum[((columnNum-columnNum%3)/3,(rowNum-rowNum%3)/3)]][curPos]=(rowNum,columnNum)
+        return True
 '''
