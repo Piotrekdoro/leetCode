@@ -4,17 +4,24 @@
 
 def productExceptSelf(nums):
 
-    maxNum=1
+    curVal=1
     answer=[]
+    multiplyForward=[]
+    multiplyBackward=[]
 
     for i in range(len(nums)):
-        maxNum*=nums[i]
-    print(maxNum)
-    for i in range(len(nums)):
-        print(maxNum*nums[i])
-        answer.append(int(maxNum/nums[i]))
+        curVal*=nums[i]
+        multiplyForward.append(curVal)
+    curVal=1
+    for i in reversed(range(len(nums))):
+        curVal*=nums[i]
+        multiplyBackward.append(curVal)
+    multiplyBackward.reverse()
+    answer.append(multiplyBackward[1])
+    for i in range(1,len(nums)-1):
+        answer.append(multiplyForward[i-1]*multiplyBackward[i+1])
+    answer.append(multiplyForward[len(nums)-2])
     return answer
-
 
 test=productExceptSelf([1,2,3,4])
 print(test)
@@ -30,6 +37,25 @@ print(test)
 
 
 
+'''
+class Solution:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        curVal=1
+        answer=[]
+        multiplyForward=[]
+        multiplyBackward=[]
 
-#class Solution:
-    #def productExceptSelf(self, nums: List[int]) -> List[int]:
+        for i in range(len(nums)):
+            curVal*=nums[i]
+            multiplyForward.append(curVal)
+        curVal=1
+        for i in reversed(range(len(nums))):
+            curVal*=nums[i]
+            multiplyBackward.append(curVal)
+        multiplyBackward.reverse()
+        answer.append(multiplyBackward[1])
+        for i in range(1,len(nums)-1):
+            answer.append(multiplyForward[i-1]*multiplyBackward[i+1])
+        answer.append(multiplyForward[len(nums)-2])
+        return answer
+'''
