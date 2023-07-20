@@ -1,6 +1,23 @@
 '''
 Given an array of integers heights representing the histogram's bar height where the width of each bar is 1, return the area of the largest rectangle in the histogram.
 '''
+class Solution:
+    def largestRectangleArea(self, heights):
+
+
+
+test=Solution()
+print(test.largestRectangleArea([2,1,5,6,2,3]))
+
+
+
+
+
+
+
+
+'''
+# Works but is too slow
 
 class Solution:
     def largestRectangleArea(self, heights):
@@ -41,3 +58,4 @@ class Solution:
     
 test=Solution()
 print(test.largestRectangleArea([2,1,5,6,2,3]))
+'''
