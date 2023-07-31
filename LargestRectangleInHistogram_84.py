@@ -3,11 +3,28 @@ Given an array of integers heights representing the histogram's bar height where
 '''
 class Solution:
     def largestRectangleArea(self, heights):
+        
+        maxArea=0
+        popCounter=0
+
+        histogramStack=[]
+
+        i=1
+        while True:
+
+            if heights[i]>=heights[i-1]:
+                histogramStack.append(heights[i-1])
+                #here I should trigger another recount when I hit the end
+                i+=1
+            else:
+                while histogramStack!=[] and histogramStack[len(histogramStack)-1]>heights[i]:
+                    histogramStack.pop()
+                    popCounter+=1
 
 
 
-test=Solution()
-print(test.largestRectangleArea([2,1,5,6,2,3]))
+test=Solution().largestRectangleArea([2,1,5,6,2,3])
+print(test)
 
 
 
