@@ -1,7 +1,4 @@
-a=1
-b=a
-print(a)
+a='abcdefgh'
+b=a[2:5]
 print(b)
-a=a+11
-print(a)
-print(b)
+
